@@ -1,6 +1,10 @@
 CMAKE_MINIMUM_REQUIRED (VERSION 3.0)
 PROJECT (item)
 
+FIND_PACKAGE(Boost)
+INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
+MESSAGE("boost include ${Boost_INCLUDE_DIRS}")
+
 IF (CMAKE_VERSION VERSION_LESS "3.1")
   SET(CMAKE_CXX_FLAGS "-std=gnu++11 ${CMAKE_CXX_FLAGS}")
 ELSE ()
@@ -10,8 +14,5 @@ ENDIF ()
 SET(CMAKE_CXX_FLAGS "-g -Wall -Wextra ${CMAKE_CXX_FLAGS}")
 INCLUDE_DIRECTORIES(../common/)
 
-ADD_EXECUTABLE(
-  item item.cpp)
-
-ADD_EXECUTABLE(
-  uniform_init uniform_init.cpp)
+ADD_EXECUTABLE(item item.cpp)
+ADD_EXECUTABLE(uniform_init uniform_init.cpp)
