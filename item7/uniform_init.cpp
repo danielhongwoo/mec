@@ -24,6 +24,10 @@ public:
     cout << __FUNCTION__ << endl;
     return d_;
   }
+  operator long double() const {
+    cout << __FUNCTION__ << endl;
+    return d_;
+  }
 private:
   int i_;
   bool b_;
@@ -99,7 +103,11 @@ int main() {
 
   Item i5(i3);
   i5.print();
-  Item i6{i3}; // oops. probably default copy constructor was called
+
+  // oops.
+  //  - on clang++ 4.0: probably default copy constructor was called
+  //  - on g++ 5.4: it needs long double operator() not double operator()
+  Item i6{i3};
   i6.print();
 
   float f = i4;
